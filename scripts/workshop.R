@@ -44,4 +44,20 @@ interviews[1, ] ## Data from all the columns in the first row
 interviews[, 6] ## Data from all rows for column 6
 interviews[6] ## Data from column 6
 interviews["respondent_wall_type"] ## Data from column titled "___"
+interviews[, -1] ## Output does not print the first column
 
+## Exercise
+interviews_100 <- interviews[100, ] ## Create a data frame that contains data in row 100 of the interviews dataset
+nrow(interviews_100) 
+tail(interviews_100) ## Comparing what is printed as the last row with the original dataset
+tail(interviews)
+
+(interviews_last <- interviews[131, ]) ## Creates a data frame that contains data in the last row (which is 131) of the interviews dataset
+(interviews_last <- interviews[nrow(interviews), ]) ## Creates a data frame that contains data in the last row because nrow(interviews) will return the value of 131, which IS the last row
+
+## Use nrow() to extract the row that is in the middle of the data set
+interviews_middle <- interviews[round(nrow(interviews)/2), ]
+interviews_middle <- interviews[ceiling(nrow(interviews)/2), ] ## Ceiling() always rounds up
+
+## Use nrow() to reproduct head()
+interviews[-(7:nrow(interviews)), ] ## Remember that '-' excludes whatever you tell it to
