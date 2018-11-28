@@ -20,3 +20,28 @@ as.data.frame(interviews) ## prints data as is in the console
 view(interviews) ## opens a spreadsheet view of data
 read_csv2(interviews) ## Understands the usage of ; instead of , in CSVs from countries that use , as a decimal e.g. Germany
 
+## Inspecting data
+dim(interviews) ## Dimensions of the data: rows x columns
+nrow(interviews) ## Number of rows
+ncol(interviews) ## Number of columns
+
+head(interviews) ## Prints first 6 rows
+head(as.data.frame(interviews))
+
+tail(interviews) ## Prints the last 6 rows
+
+names(interviews) ## Prints column heads
+
+str(interviews) ## Gives brief string summary representation of the object
+summary(interviews) ## Summarizes data per column including min, max, median, mean
+
+## Accessing data in specific columns of the dataframe: Environment tab > Data > shows number of variables
+interviews[1, 1] ## Accessing specific data in which row and which column; e.g. row 1 column 1
+interviews[1, 6]
+interviews[1:5, 6] ## Data from the first 5 rows in the 6th column
+interviews[1, 1:4] ## Data from the first row in columns 1 to 4
+interviews[1, ] ## Data from all the columns in the first row
+interviews[, 6] ## Data from all rows for column 6
+interviews[6] ## Data from column 6
+interviews["respondent_wall_type"] ## Data from column titled "___"
+
