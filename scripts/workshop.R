@@ -130,3 +130,25 @@ count(affect_conflicts) ## Counts frequency of each level according to the speci
 
 library(summarytools)
 summary(affect_conflicts) ## Counts frequency of each level according to the specified priority order
+
+# Another solution using is.na is possible
+
+
+## Formatting Dates
+str(interviews) ## Gives overview of all variables in the dataframe
+    ## $interview_date: R calls it POSIXct but not numerals or characters
+    ## read.csv will read the date as characters
+
+# Using the lubridate package, we can convert date data to its proper format
+library(lubridate)
+dates <- interviews$interview_date
+head(dates) ## format is yyyy-mm-dd timezone"; ymd is a function that recognizes this format
+
+dates <- ymd(dates) ##ymd_hms() only needed if using read.csv which reads the dates as characters
+str(dates)
+
+  ## Extract the date and put it back into the dataset as a new variable using $
+interviews$day <- day(dates) ## day() is from lubridate package; extracts the day from dates and creates a new column called day
+interviews$month <- month(dates) ## extracts the month from dates and creates a new column called month
+interviews$year <- year(dates) ## extracts the year from dates and creates a new column called year
+
