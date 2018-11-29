@@ -12,6 +12,11 @@ library(tidyverse)
 interviews <- read_csv("data/SAFI_clean.csv", na="NULL") ## The dataset has many missing values, so these missing values have to be defined
 ## na="NULL" missing values are coded as NULL in the csv
 
+## read_csv function is unique to the tidyverse package
+## read.csv function will convert all character data to factors
+  ## use interviews <- read.csv("data/SAFI_clean.csv", na = "NULL", stringsAsFactors = FALSE) in base R
+  ## Can also set option in base R using options(stringsAsFactors = FALSE) followed by interviews <- read.csv("data/SAFI_clean.csv", na = "NULL")
+
 ## The readout should identify columns and the type of data (e.g. character, date, integer) that it includes
 
 ## A couple of ways to temporarily view data
