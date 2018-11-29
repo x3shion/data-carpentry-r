@@ -123,3 +123,10 @@ levels(affect_conflicts)[2] <- "more than once" ## [2] denotes/"extracts" the 2n
 affect_conflicts <- factor(affect_conflicts, levels = c("never", "once", "more than once", "frequently", "undetermined"))
 
 plot(affect_conflicts)
+tabulate(affect_conflicts) ## Counts frequency of each level according to the specified priority order
+
+library(plyr)
+count(affect_conflicts) ## Counts frequency of each level according to the specified priority order
+
+library(summarytools)
+summary(affect_conflicts) ## Counts frequency of each level according to the specified priority order
