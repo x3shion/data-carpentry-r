@@ -61,3 +61,60 @@ interviews_middle <- interviews[ceiling(nrow(interviews)/2), ] ## Ceiling() alwa
 
 ## Use nrow() to reproduct head()
 interviews[-(7:nrow(interviews)), ] ## Remember that '-' excludes whatever you tell it to
+
+## Factors
+## Often used for categorical variables
+
+respondent_floor_type <- factor(c("earth", "cement", "cement", "earth")) # Creates a vector containing 4 elements. The factor function then converts the vector into a factor.
+
+# R will automatically sort the levels of a factor
+levels(respondent_floor_type) ## This function reports the types of levels for a factor in alphabetical order
+nlevels(respondent_floor_type) ## This function reports the number of levels for a factor
+
+# To assign priority for levels of a factor
+respondent_floor_type <- factor(respondent_floor_type, levels = c("earth", "cement"))
+
+# Levels can be changed
+levels(respondent_floor_type)[2] <- "brick" ## [2] denotes/"extracts" the 2nd level, which is cement, and assign it as cement
+
+as.character(respondent_floor_type) ## Converts the data to characters
+
+year_fct <- factor(c(1990, 1983, 1977, 1998, 1990)) ## Stores these years as a categorical variable and NOT the number "1990"
+  ## Have to designate this because R does not understand the concept of "years" and would read the input as the number 1990
+as.numeric(year_fct) ## Stores the data as NUMBERS that can be manipulated rather than categories that hold meaning
+  ## Level 3 indicates 1990
+  ## Level number is assigned in ascending order
+as.character(year_fct)
+as.numeric(as.character(year_fct)) 
+
+as.numeric(levels(year_fct))[year_fct] 
+  ## Converts the levels of year_fct into numbers
+  ## Subsetting using [year_fct] uses the VALUE of those levels (e.g. 1 = 1990) to index these numbers
+
+## To extract a column from the dataset; the dataset_name$column_name
+affect_conflict <- interviews$affect_conflicts  ## OR
+affect_conflict <- interviews[[ , "affect_conflicts"]] ## Try not to use row or column numbers because if you change your dataset all the numbers will change
+
+## Convert this column of data into a factor
+affect_conflict <- factor(affected_conflict)
+
+## Graphical representation of the NUMBER of times (frequency) that these levels appear
+plot(affect_conflict) ## Orders categories in alphabetical manner; NAs are also excluded
+
+## To reorder the categories in a more sensible manner
+affect_conflicts <- interviews$affect_conflicts 
+affect_conflicts[is.na(affect_conflicts)] <- "undetermined" ## Convert NA values to NA category by selecting missing values with is.na and then assign them as "undetermined"
+affect_conflicts <- factor(affect_conflicts) ## Converts levels to factors
+
+plot(affect_conflicts)
+
+
+## Exercise: Rename more_once to "more than once" and replot from least frequent to most frequent, followed by undetermined
+
+# Change levels
+levels(affect_conflicts)[2] <- "more than once" ## [2] denotes/"extracts" the 2nd level, which is more_once, and assigns/renames it as "more than once"
+
+# Assign priority for levels of a factor
+affect_conflicts <- factor(affect_conflicts, levels = c("never", "once", "more than once", "frequently", "undetermined"))
+
+plot(affect_conflicts)
